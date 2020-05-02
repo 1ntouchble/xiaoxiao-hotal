@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}" />
+
+	<appender name="CONSOLE" class = "ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss SSS}]-[%-5level] -[%logger{50}] - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<param name = "Encoding" value = "UTF-8"/>
+	</appender>
+
+	<!--开发环境 -->
+	<springProfile name="local,dev">
+		<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+		<!--<logger name="com.xiaoxiao" level="DEBUG" additivity="true">-->
+    		<!--<appender-ref ref="CONSOLE"/>  -->
+  		<!--</logger>-->
+		<root level="DEBUG">
+			<appender-ref ref="CONSOLE" />
+		</root>
+	</springProfile>
+
+	<!--测试、正式环境 -->
+	<springProfile name="uat,prod">
+		<appender name="JSON_FILE"
+			class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<file>${LOG_FILE}.json</file>
+			<rollingPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+				<fileNamePattern>${LOG_FILE}.json.%d{yyyy-MM-dd}.%i.gz
+				</fileNamePattern>
+				<maxFileSize>100MB</maxFileSize>
+				<maxHistory>7</maxHistory>
+				<totalSizeCap>5GB</totalSizeCap>
+			</rollingPolicy>
+			<encoder
+				class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+				<providers>
+					<timestamp>
+						<timeZone>Asia/Shanghai</timeZone>
+					</timestamp>
+					<mdc />
+					<context />
+					<logLevel />
+					<loggerName />
+					<threadName />
+					<message />
+					<logstashMarkers />
+					<arguments />
+					<stackTrace>
+						<fieldName>stack_trace</fieldName>
+						<throwableConverter
+							class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+							<exclude>net\.sf\.cglib\..*</exclude>
+							<maxDepthPerThrowable>100</maxDepthPerThrowable>
+							<rootCauseFirst>true</rootCauseFirst>
+						</throwableConverter>
+					</stackTrace>
+				</providers>
+			</encoder>
+		</appender>
+		<logger name="com.xiaoxiao" level="INFO" additivity="false">
+    		<appender-ref ref="JSON_FILE"/>  
+  		</logger>
+		<root level="WARN">
+			<appender-ref ref="JSON_FILE" />
+		</root>
+	</springProfile>
+</configuration>
