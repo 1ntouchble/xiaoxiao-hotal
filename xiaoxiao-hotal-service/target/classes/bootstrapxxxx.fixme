@@ -1,7 +1,0 @@
-#spring:
-#  profiles:
-#    active: '@profiles.active@'
-#    include: 'datasource'
-#  main.banner-mode: 'OFF'
-#  application.name: xiaoxiao-hotal
-#
