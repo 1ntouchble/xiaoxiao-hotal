@@ -9,6 +9,21 @@
     <result column="updated_date" property="updatedDate" jdbcType="TIMESTAMP" />
     <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
   </resultMap>
+
+
+  <resultMap id="RoomListPojo" type="com.xiaoxiao.hotal.pojo.RoomListPojo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="room_type" property="roomType" jdbcType="INTEGER" />
+    <result column="room_number" property="roomNumber" jdbcType="INTEGER" />
+    <result column="room_status" property="roomStatus" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="price" property="price" javaType="DECIMAL" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="updated_date" property="updatedDate" jdbcType="TIMESTAMP" />
+    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+  </resultMap>
+
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -234,4 +249,26 @@
       #{createdDate,jdbcType=TIMESTAMP}, #{updatedDate,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
+
+  <select id="getRoomPage" resultMap="RoomListPojo" parameterType="java.util.Map">
+    select t1.id,t1.room_type,t1.room_number,t2.room_status,t2.customer_id,t3.price,t1.created_date,t2.updated_date
+    from room_info t1 left join room_state_info t2 on t1.id = t2.room_id
+    left join room_price_info on t1.id = t3.room_id
+    where t1.is_deleted = '0'
+    <if test="roomType != 0 and roomType != null">
+      t1.room_type = #{roomType}
+    </if>
+    <if test="roomNumber != 0 and roomNumber != null" >
+      t1.room_number = #{roomNumber}
+    </if>
+    where t1.is_deleted = '0'
+    <if test="roomStatus != 0 and roomStatus != null">
+      t2.room_roomStatus = #{roomStatus}
+    </if>
+    <if test="customrId != 0 and customrId != null" >
+      t2.customr_id = #{customrId}
+    </if>
+    order by created_date desc
+  </select>
+
 </mapper>
