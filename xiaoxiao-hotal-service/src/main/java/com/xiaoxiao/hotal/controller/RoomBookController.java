@@ -21,7 +21,7 @@ public class RoomBookController {
 
     @RequestMapping("/bookRoom")
     public void bookRoom(@RequestBody BookRoomReq req){
-
+        roomService.bookRoom(req);
     }
 
     @RequestMapping("/quitRoom")
