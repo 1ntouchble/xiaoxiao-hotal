@@ -21,6 +21,7 @@ public class RoomStateInfoManageImpl implements RoomStateInfoManage {
     @Override
     public void insert(RoomStateInfo roomStateInfo) {
         roomStateInfo.setCreatedDate(new Date());
-        mapper.insert(roomStateInfo);
+        roomStateInfo.setUpdatedDate(new Date());
+        mapper.insertSelective(roomStateInfo);
     }
 }
