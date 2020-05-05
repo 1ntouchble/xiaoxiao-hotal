@@ -1,49 +1,36 @@
-package com.xiaoxiao.hotal.vo.response;
+package com.xiaoxiao.hotal.pojo;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * @author zhangtianqi
- * @since 2020-05-01 16:50
+ * @since 2020-05-04 17:32
  */
-public class RoomListResp {
+public class RoomListPojo {
 
-    //房间id
-    private Integer roomId;
+    private Integer id;
 
-    //房间号
-    private Integer roomNumber;
-
-    //房间类型
     private Integer roomType;
 
-    //客户信息
+    private Integer roomNumber;
+
+    private Integer roomStatus;
+
     private Integer customerId;
 
-    //价格
     private BigDecimal price;
 
-    //创建日期
     private Date createdDate;
 
-    //修改日期
     private Date updatedDate;
 
-    public Integer getRoomId() {
-        return roomId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
-    }
-
-    public Integer getRoomNumber() {
-        return roomNumber;
-    }
-
-    public void setRoomNumber(Integer roomNumber) {
-        this.roomNumber = roomNumber;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getRoomType() {
@@ -54,6 +41,22 @@ public class RoomListResp {
         this.roomType = roomType;
     }
 
+    public Integer getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(Integer roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public Integer getRoomStatus() {
+        return roomStatus;
+    }
+
+    public void setRoomStatus(Integer roomStatus) {
+        this.roomStatus = roomStatus;
+    }
+
     public Integer getCustomerId() {
         return customerId;
     }
@@ -62,16 +65,16 @@ public class RoomListResp {
         this.customerId = customerId;
     }
 
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
     }
 
     public void setCreatedDate(Date createdDate) {

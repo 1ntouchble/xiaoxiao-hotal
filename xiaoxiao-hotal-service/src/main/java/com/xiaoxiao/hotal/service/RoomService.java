@@ -1,5 +1,6 @@
 package com.xiaoxiao.hotal.service;
 
+import com.xiaoxiao.hotal.base.PageResult;
 import com.xiaoxiao.hotal.vo.request.BookRoomReq;
 import com.xiaoxiao.hotal.vo.request.RoomListReq;
 import com.xiaoxiao.hotal.vo.response.RoomListResp;
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public interface RoomService {
 
-    List<RoomListResp> getRoomList(RoomListReq req);
+    PageResult<RoomListResp> getRoomList(RoomListReq req);
 
     void bookRoom(BookRoomReq req);
 }

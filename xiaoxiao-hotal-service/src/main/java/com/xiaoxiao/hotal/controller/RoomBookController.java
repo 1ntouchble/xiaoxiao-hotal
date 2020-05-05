@@ -1,7 +1,10 @@
 package com.xiaoxiao.hotal.controller;
 
+import com.xiaoxiao.hotal.base.PageResult;
 import com.xiaoxiao.hotal.service.RoomService;
 import com.xiaoxiao.hotal.vo.request.BookRoomReq;
+import com.xiaoxiao.hotal.vo.request.RoomListReq;
+import com.xiaoxiao.hotal.vo.response.RoomListResp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +24,7 @@ public class RoomBookController {
 
     @RequestMapping("/bookRoom")
     public void bookRoom(@RequestBody BookRoomReq req){
-
+        roomService.bookRoom(req);
     }
 
     @RequestMapping("/quitRoom")
@@ -29,6 +32,11 @@ public class RoomBookController {
 
 
 
+    }
+
+    @RequestMapping("/queryPage")
+    public PageResult<RoomListResp> getRoomList(@RequestBody RoomListReq req){
+        return roomService.getRoomList(req);
     }
 
 }
