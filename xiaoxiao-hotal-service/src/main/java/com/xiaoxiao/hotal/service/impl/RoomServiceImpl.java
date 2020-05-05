@@ -47,7 +47,7 @@ public class RoomServiceImpl implements RoomService {
             customerId = customerInfoManage.getCustomerLastId(customerInfo);
         }
         PageResult<RoomListResp> result = roomInfoManage.queryRoomInfo(req,customerId);
-        return null;
+        return result;
     }
 
     @Override

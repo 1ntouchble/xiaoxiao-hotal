@@ -24,6 +24,8 @@ import java.util.*;
 @Component
 public class RoomInfoManageImpl implements RoomInfoManage {
 
+    private static final BigDecimal DEFAULT_HOTAL_PRICE = BigDecimal.valueOf(200L);
+
     @Autowired
     private RoomInfoMapper mapper;
 
@@ -59,13 +61,15 @@ public class RoomInfoManageImpl implements RoomInfoManage {
 
         if (!pageInfo.getList().isEmpty()) {
             pageInfo.getList().forEach(data -> {
-                RoomListResp roomListResp = new RoomListResp();
-                BeanUtils.copyProperties(data,roomListResp);
-                roomListResp.setCustomerId(data.getId());
                 if(data.getPrice()==null || data.getPrice().compareTo(BigDecimal.ZERO)!=0){
                     //去查一下默认值
                     //fixme
+                    data.setPrice(DEFAULT_HOTAL_PRICE);
                 }
+                RoomListResp roomListResp = new RoomListResp();
+                BeanUtils.copyProperties(data,roomListResp);
+                roomListResp.setRoomId(data.getId());
+
                 respList.add(roomListResp);
             });
         }

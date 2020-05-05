@@ -23,7 +23,7 @@ public class RoomListPojo {
 
     private Date createdDate;
 
-    private Date updateDate;
+    private Date updatedDate;
 
     public Integer getId() {
         return id;
@@ -81,11 +81,11 @@ public class RoomListPojo {
         this.createdDate = createdDate;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 }

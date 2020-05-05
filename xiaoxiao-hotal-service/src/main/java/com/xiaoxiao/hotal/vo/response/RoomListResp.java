@@ -10,16 +10,13 @@ import java.util.Date;
 public class RoomListResp {
 
     //房间id
-    private String roomId;
+    private Integer roomId;
 
     //房间号
-    private String roomNumber;
+    private Integer roomNumber;
 
     //房间类型
     private Integer roomType;
-
-    //房间价格
-    private BigDecimal roomPrice;
 
     //客户信息
     private Integer customerId;
@@ -33,19 +30,19 @@ public class RoomListResp {
     //修改日期
     private Date updatedDate;
 
-    public String getRoomId() {
+    public Integer getRoomId() {
         return roomId;
     }
 
-    public void setRoomId(String roomId) {
+    public void setRoomId(Integer roomId) {
         this.roomId = roomId;
     }
 
-    public String getRoomNumber() {
+    public Integer getRoomNumber() {
         return roomNumber;
     }
 
-    public void setRoomNumber(String roomNumber) {
+    public void setRoomNumber(Integer roomNumber) {
         this.roomNumber = roomNumber;
     }
 
@@ -55,14 +52,6 @@ public class RoomListResp {
 
     public void setRoomType(Integer roomType) {
         this.roomType = roomType;
-    }
-
-    public BigDecimal getRoomPrice() {
-        return roomPrice;
-    }
-
-    public void setRoomPrice(BigDecimal roomPrice) {
-        this.roomPrice = roomPrice;
     }
 
     public Integer getCustomerId() {
