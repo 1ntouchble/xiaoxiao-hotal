@@ -36,6 +36,7 @@ public class RoomInfoManageImpl implements RoomInfoManage {
     public Integer insert(RoomInfo roomInfo) {
         roomInfo.setCreatedDate(new Date());
         roomInfo.setIsDeleted(Boolean.FALSE);
+        roomInfo.setUpdatedDate(new Date());
         mapper.insertAndReturnId(roomInfo);
         return roomInfo.getId();
     }

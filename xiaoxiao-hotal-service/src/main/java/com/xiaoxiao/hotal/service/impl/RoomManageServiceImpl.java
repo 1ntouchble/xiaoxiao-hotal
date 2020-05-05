@@ -29,6 +29,8 @@ public class RoomManageServiceImpl implements RoomManageService {
 
     @Override
     public void addRoom(RoomAddReq req) {
+        //fixme 查询数据库中是否已经存在这个roomNumer的数据，如果有，就throw new HotalException
+
         RoomInfo roomInfo = new RoomInfo();
         roomInfo.setRoomNumber(req.getRoomNum());
         roomInfo.setRoomType(req.getRoomType());
@@ -40,11 +42,12 @@ public class RoomManageServiceImpl implements RoomManageService {
 
     @Override
     public void updateRoom(RoomAddReq req) {
+        //fixme 修改customerId啥的，修改状态
 
     }
 
     @Override
     public void addOrUpdateUpdatePrice(UpdateRoomPriceReq updateRoomPriceReq) {
-
+        //fixme 判断当前时间内房间价格，如果有的话就修改，没有就删除
     }
 }
